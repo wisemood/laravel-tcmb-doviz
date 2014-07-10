@@ -1,0 +1,25 @@
+{
+	"name": "obarlas/tcmb-doviz",
+	"description": "TCMB web sitesinden güncel kurları alır.",
+	"authors": [
+		{
+			"name": "Omer Barlas",
+			"email": "omer.barlas@gmail.com"
+		}
+	],
+	"require": {
+		"php": ">=5.4.0",
+		"illuminate/support": "4.2.*"
+	},
+	"autoload": {
+		"classmap": [
+			"src/commands",
+			"src/models",
+			"src/migrations"
+		],
+		"psr-0": {
+			"Obarlas\\TcmbDoviz": "src/"
+		}
+	},
+	"minimum-stability": "stable"
+}
