@@ -1,8 +1,6 @@
-<?php namespace Obarlas\TcmbDoviz;
+<?php namespace Wisemood\LaravelTcmbDoviz;
 
-use Illuminate\Support\ServiceProvider;
-
-class TcmbDovizServiceProvider extends ServiceProvider {
+class ServiceProvider extends \Illuminate\Support\ServiceProvider {
 
 	/**
 	 * Indicates if loading of the provider is deferred.
@@ -13,9 +11,10 @@ class TcmbDovizServiceProvider extends ServiceProvider {
 
 	public function boot()
 	{
-		$this->package('obarlas/tcmb-doviz');
+		$this->package('wisemood/laravel-tcmb-doviz');
 		$this->commands([
-			'Obarlas\TcmbDoviz\GetDovizCommand'
+			'Wisemood\LaravelTcmbDoviz\DovizGetCommand',
+			'Wisemood\LaravelTcmbDoviz\DovizInstallCommand'
 		]);
 	}
 

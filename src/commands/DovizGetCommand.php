@@ -1,18 +1,18 @@
-<?php namespace Obarlas\TcmbDoviz;
+<?php namespace Wisemood\LaravelTcmbDoviz;
 
 use \Illuminate\Console\Command;
 use \Symfony\Component\Console\Input\InputOption;
 use \Symfony\Component\Console\Input\InputArgument;
 use \Illuminate\Filesystem\Filesystem;
 
-class GetDovizCommand extends Command {
+class DovizGetCommand extends Command {
 
 	/**
 	 * The console command name.
 	 *
 	 * @var string
 	 */
-	protected $name = 'get:doviz';
+	protected $name = 'doviz:get';
 
 	/**
 	 * The console command description.

@@ -4,23 +4,29 @@ tcmb-doviz
 TC Merkez Bankası web sitesinden günlük döviz kurlarını alır.
 
 Kurulum
-=======
+-------
 
-composer.json dosyanıza ekleyebilir veya workbench ile geliştirmek isterseniz git clone obarlas/tcmb-doviz komutu ile klonlayabilirsiniz.
+composer.json dosyanıza ekleyebilir veya workbench ile geliştirmek isterseniz git clone Wisemood/tcmb-doviz komutu ile
+klonlayabilirsiniz. Kurulumu tamamladıktan sonra ```config/app.php``` dosyanıza aşağıdaki gibi eklemeniz gerekmektedir.
+
+```php
+'Wisemood\TcmbDoviz\TcmbDovizServiceProvider',
+```
 
 İşlem bittikten sonra döviz tablosunu yaratmanız beklenmektedir. Bunun için artisan ile aşağıdaki komutu vermeniz gerekir;
 
 ```
-php artisan migrate --bench obarlas/tcmb-doviz
+php artisan doviz:install
 ```
 
 Kullanım
-========
+--------
 
-Kullanımı gayet basittir, isterseniz elle kullanabilir veya bir cron işi olarak sitenize ekleyebilirsiniz.
+Komut satırı kısmındaki kullanımı gayet basittir, isterseniz elle kullanabilir veya bir cron işi yaratarak düzenli olarak
+sitenize eklenmesini sağlayabilirsiniz.
 
 ```
-php artisan get:doviz
+php artisan doviz:get
 ```
 
 Komut çalıştıktan sonra size hangi tarihli kurları kaydettiğini aşağıdaki gibi bildirecektir.
@@ -29,22 +35,36 @@ Komut çalıştıktan sonra size hangi tarihli kurları kaydettiğini aşağıda
 10.07.2014 tarihli kurlar başarı ile kaydedilmiştir.
 ```
 
-
-Usage
-=====
-
-- You must add the package to your app config.
+En Son Kuru Alma
+----------------
 
 ```php
-'Obarlas\LaravelMigrateCustomCommand\LaravelMigrateCustomCommandServiceProvider',
+$kur = \Wisemood\TcmbDoviz\Doviz::sonKur();
 ```
 
-- In the ```src/stubs``` folder of the package original stubs from the Laravel package can be found, create and copy them to your ```database/templates``` folder. Now you can edit the stubs according to your needs.
+ile kaydedilmiş en son kuru alabilirsiniz. Aldığınız kur içerisinde doları kullanmak için ```$kur->dolar``` euro'yu
+kullanmak için ise ```$kur->euro``` değişkenlerini kullanın.
 
-- Usage is simple
+En Yakın Kuru Alma
+------------------
+
+Son kuru almak yerine verdiğiniz tarihin en yakın kurunu alır, eğer yakında bir kur yok ise ```false``` değerini
+döndürür.
+
+```php
+$kur = \Wisemood\TcmbDoviz\Doviz::enYakinKur('2014-07-01');
+```
+
+Notlar
+------
+
+Doviz modeli tarihi her zaman d.m.Y formatında döndürür. Farklı bir formata ihtiyacınız varsa aşağıdaki gibi müdahale
+edebilirsiniz.
 
 ```
-php artisan migrate:custom stub_name class_name --table=table_name
+$kur = \Wisemood\TcmbDoviz\Doviz::sonKur();
+$kur->tarih = date("d-m-Y", strtotime($kur->tarih));
 ```
 
-- ```migrate:custom``` command checks if there is a ```{{table}}``` variable in the stub file, and if no ```--table``` argument is passed it stops.
+Eğer ```$kur->save();``` komutu ile kaydederseniz Doviz modelinin kurulumundan dolayı veritabanına her zaman ```Y-m-d```
+formatında kaydedilir.

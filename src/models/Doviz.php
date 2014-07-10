@@ -1,4 +1,4 @@
-<?php namespace Obarlas\TcmbDoviz;
+<?php namespace Wisemood\LaravelTcmbDoviz;
 
 class Doviz extends \Eloquent {
 
@@ -17,7 +17,11 @@ class Doviz extends \Eloquent {
 
 	public static function enYakinKur($tarih)
 	{
-		return Doviz::orderBy('tarih', 'desc')->where('tarih', '<=', date("Y-m-d", strtotime($tarih)))->first();
+		if ($kur = Doviz::orderBy('tarih', 'desc')->where('tarih', '<=', date("Y-m-d", strtotime($tarih)))->first()) {
+			return $kur;
+		}
+
+		return false;
 	}
 
 	public function getTarihAttribute($value = null)
@@ -32,12 +36,12 @@ class Doviz extends \Eloquent {
 
 	public function setDolarAttribute($value = null)
 	{
-		$this->attributes["dolar"] = empty($value) ? null : (float)$value;
+		$this->attributes["dolar"] = (float)$value;
 	}
 
 	public function setEuroAttribute($value = null)
 	{
-		$this->attributes["euro"] = empty($value) ? null : (float)$value;
+		$this->attributes["euro"] = (float)$value;
 	}
 
 	public function setPariteAttribute($value = null)

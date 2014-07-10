@@ -1,5 +1,5 @@
 {
-	"name": "obarlas/tcmb-doviz",
+	"name": "wisemood/laravel-tcmb-doviz",
 	"description": "TCMB web sitesinden güncel kurları alır.",
 	"authors": [
 		{
@@ -14,11 +14,10 @@
 	"autoload": {
 		"classmap": [
 			"src/commands",
-			"src/models",
-			"src/migrations"
+			"src/models"
 		],
 		"psr-0": {
-			"Obarlas\\TcmbDoviz": "src/"
+			"Wisemood\\LaravelTcmbDoviz": "src/"
 		}
 	},
 	"minimum-stability": "stable"
