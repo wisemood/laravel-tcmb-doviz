@@ -16,7 +16,7 @@ klonlayabilirsiniz. Kurulumu tamamladıktan sonra ```config/app.php``` dosyanız
 İşlem bittikten sonra döviz tablosunu yaratmanız beklenmektedir. Bunun için artisan ile aşağıdaki komutu vermeniz gerekir;
 
 ```
-php artisan doviz:install
+php artisan migrate --package wisemood/laravel-tcmb-doviz
 ```
 
 Kullanım
@@ -34,6 +34,8 @@ Komut çalıştıktan sonra size hangi tarihli kurları kaydettiğini aşağıda
 ```
 10.07.2014 tarihli kurlar başarı ile kaydedilmiştir.
 ```
+
+Sadece Euro ve Dolar kurları alınmaktadır.
 
 En Son Kuru Alma
 ----------------

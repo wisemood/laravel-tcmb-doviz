@@ -13,6 +13,7 @@
 	},
 	"autoload": {
 		"classmap": [
+			"src/migrations",
 			"src/commands",
 			"src/models"
 		],

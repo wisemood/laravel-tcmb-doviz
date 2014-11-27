@@ -13,8 +13,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider {
 	{
 		$this->package('wisemood/laravel-tcmb-doviz');
 		$this->commands([
-			'Wisemood\LaravelTcmbDoviz\DovizGetCommand',
-			'Wisemood\LaravelTcmbDoviz\DovizInstallCommand'
+			'Wisemood\LaravelTcmbDoviz\DovizGetCommand'
 		]);
 	}
 
