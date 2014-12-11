@@ -10,7 +10,7 @@ composer.json dosyanıza ekleyebilir veya workbench ile geliştirmek isterseniz 
 klonlayabilirsiniz. Kurulumu tamamladıktan sonra ```config/app.php``` dosyanıza aşağıdaki gibi eklemeniz gerekmektedir.
 
 ```php
-'Wisemood\TcmbDoviz\TcmbDovizServiceProvider',
+'Wisemood\LaravelTcmbDoviz\ServiceProvider',
 ```
 
 İşlem bittikten sonra döviz tablosunu yaratmanız beklenmektedir. Bunun için artisan ile aşağıdaki komutu vermeniz gerekir;
@@ -50,8 +50,8 @@ kullanmak için ise ```$kur->euro``` değişkenlerini kullanın.
 En Yakın Kuru Alma
 ------------------
 
-Son kuru almak yerine verdiğiniz tarihin en yakın kurunu alır, eğer yakında bir kur yok ise ```false``` değerini
-döndürür.
+Son kuru almak yerine verdiğiniz tarihin en yakın kurunu alır, eğer yakında bir kur yok ise ```false```, tarih
+verilmemiş ise ```sonKur()``` değerini döndürür.
 
 ```php
 $kur = \Wisemood\TcmbDoviz\Doviz::enYakinKur('2014-07-01');

@@ -16,10 +16,14 @@ class Doviz extends \Eloquent {
       return new $model();
    }
 
-   public static function enYakinKur($tarih)
+   public static function enYakinKur($tarih = null)
    {
-      if ($kur = Doviz::orderBy('tarih', 'desc')->where('tarih', '<=', date("Y-m-d", strtotime($tarih)))->first()) {
-         return $kur;
+      if (empty($tarih)) {
+         return Doviz::sonKur();
+      } else {
+         if ($kur = Doviz::orderBy('tarih', 'desc')->where('tarih', '<=', date("Y-m-d", strtotime($tarih)))->first()) {
+            return $kur;
+         }
       }
 
       return false;
